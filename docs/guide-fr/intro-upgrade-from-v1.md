@@ -6,7 +6,7 @@ la 2.0. En conséquence, la mise à jour depuis la version 1.1 n'est pas aussi t
 versions mineures. Dans ce guide, vous trouverez les principales différences entre les deux versions.
 
 Si vous n'avez pas utilisé Yii 1.1 avant, vous pouvez ignorer cette section et passer directement à la partie
-"[Mise en route] (start-installation.md)".
+"[Mise en route](start-installation.md)".
 
 Merci de noter que Yii 2.0 introduit plus de nouvelles fonctionnalités que celles abordées ici. Il est fortement
 recommandé de lire tout le guide de référence pour en apprendre davantage. Il y a des chances que certaines
@@ -16,7 +16,7 @@ fonctionnalités, que vous aviez préalablement développées pour vous, fassent
 Installation
 ------------
 
-Yii 2.0 exploite pleinement [Composer] (https://getcomposer.org/), le gestionnaire de paquet PHP. L'installation
+Yii 2.0 exploite pleinement [Composer](https://getcomposer.org/), le gestionnaire de paquet PHP. L'installation
 du framework, ainsi que des extensions, sont gérées par Composer. Merci de lire la partie
 [Installer Yii](start-installation.md) pour apprendre comment installer Yii 2.0. Si vous voulez
 créer de nouvelles extensions, ou rendre vos extensions existantes 1.1 compatibles 2.0, merci de lire
@@ -28,7 +28,7 @@ Pré-requis PHP
 
 Yii 2.0 requiert PHP 5.4 ou plus, ce qui est une grosse amélioration par rapport à PHP 5.2 qui était requis pour Yii 1.1.
 
-Par conséquent, il y a beaucoup de différences au niveau du langage pour lesquelles vous devriez prêter attention.
+Par conséquent, il y a beaucoup de différences au niveau du langage auxquelles vous devriez prêter attention.
 Voici un résumé des principaux changements concernant PHP:
 
 - [Espaces de noms](http://php.net/manual/fr/language.namespaces.php).
@@ -61,7 +61,7 @@ Composants et objets
 Yii 2.0 décompose la classe `CComponent` 1.1 en deux classes: [[yii\base\Object]] et [[yii\base\Component]].
 Le classe [[yii\base\Object|Object]] est une classe de base légère qui permet de définir les
 [Propriétés de l'objet](concept-properties.md) via des accesseurs. La classe [[yii\base\Component|Component]] est une
-sous classe de [[yii\base\Object|Object]] et supporte les [Evénements] (concept events.md) et les
+sous classe de [[yii\base\Object|Object]] et supporte les [Evénements](concept-events.md) et les
 [Comportements](concept-behaviors.md).
 
 Si votre classe n'a pas besoin des événements et des comportements, vous devriez envisager d'utiliser
@@ -137,21 +137,21 @@ $component->on($eventName, $handler);
 Il y a de nombreuses améliorations dans la gestion des événements. Pour plus de détails, merci de lire la partie [Evénements](concept-events.md).
 
 
-Alias
------
+Alias de chemins
+----------------
 
-Yii 2.0 étend l'utilisation des alias aux fichiers/répertoires et aux URL. Yii 2.0 impose maintenant
-aux alias de commencer par le caractère `@`, pour différencier les alias de fichiers/répertoires ou URL.
-Par exemple, l'alias `@yii` fait référence au répertoire d'installation de Yii. Les alias ??sont
-supportés dans la plupart du code de Yii. Par exemple, [[yii\caching\FileCache::cachePath]] peut prendre
-à la fois un alias et un chemin de répertoire normal.
+Yii 2.0 étend l'utilisation des alias aux chemins des fichiers/dossiers et aux URL. Yii 2.0 impose maintenant
+aux alias de commencer par le caractère `@`, pour différencier les alias des chemins normaux de fichiers/dossiers ou URL.
+Par exemple, l'alias `@yii` fait référence au dossier d'installation de Yii. Les alias de chemin sont
+supportés dans la plupart du code de Yii. Par exemple, [[yii\caching\FileCache::cachePath]] peut prendre comme valeur
+un alias de chemin ou un chemin de dossier normal.
 
-Un alias est aussi étroitement liée aux espaces de noms des classes. Il est recommandé de définir
-un alias pour chaque espace de nom racine, ce qui vous permet d'utiliser le chargeur automatique de classe de Yii sans
+Un alias est aussi étroitement lié aux espaces de noms des classes. Il est recommandé de définir
+un alias pour chaque espace de nom racine, ce qui vous permet d'utiliser le chargeur automatique de classe de Yii
 sans devoir en faire d'avantage. Par exemple, vu que `@yii` fait référence au dossier d'installation de Yii,
 une classe comme `yii\web\Request` peut être chargée automatiquement. Si vous utilisez une librairie tierce,
 telle que Zend Framework, vous pouvez définir un alias de chemin `@Zend` qui fera référence au dossier
-d'installation de Zend Framework. Une fois que vous avez fait cela, Yii sera aussi en mesure de charger automatiquement une classe de ce framework.
+d'installation de Zend Framework. Une fois que vous aurez fait cela, Yii sera aussi en mesure de charger automatiquement n'importe quelle classe de ce framework.
 
 Pour en savoir plus, consultez la partie [Alias](concept-aliases.md).
 
@@ -164,7 +164,7 @@ contrôleur ou widget. Au lieu de cela, `$this` correspond maintenant à un obje
 introduit dans la version 2.0. L'objet *vue* est de type [[yii\web\View]], et représente la partie vue
 du modèle MVC. Si vous souhaitez accéder au contrôleur ou widget dans une vue, vous pouvez utiliser `$this->context`.
 
-Pour afficher une vue depuis une autre vue, utilisez `$this->render()`, et non `$this->renderPartial()`. Le résultat retourné par la méthode `render()` doit être explictement envoyé à la sortie, en effet `render()` retournera la vue au lieu de l'afficher. Par exemple :
+Pour afficher une vue depuis une autre vue, utilisez `$this->render()`, et non `$this->renderPartial()`. Le résultat retourné par la méthode `render()` doit être explicitement envoyé à la sortie, en effet `render()` retournera la vue au lieu de l'afficher. Par exemple :
 
 ```php
 echo $this->render('_item', ['item' => $item]);
@@ -197,7 +197,7 @@ public function scenarios()
 
 Dans ce qui précède, deux scénarios sont déclarés: `backend` et `frontend`. Pour le scénario `backend` les
 propriétés `email` et `role` sont sûres et peuvent être affectées massivement. Pour le scénario `frontend`,
-`email` peut être affectée massivement tandis que `role` ne peut pas. `email` et `rôle` doivent être validées en utilisant des règles.
+`email` peut être affectée massivement tandis que `role` ne peut pas. `email` et `role` doivent être validées en utilisant des règles.
 
 La méthode [[yii\base\Model::rules()|rules()]] est toujours utilisée pour déclarer les règles de validation. Remarque : suite à l'introduction de la méthode [[yii\base\Model::scenarios()|scenarios()]], le validateur `unsafe` n'as plus de raison d'être.
 
@@ -293,7 +293,7 @@ Merci de lire la partie [Commandes console](tutorial-console.md) pour plus de d�
 I18N
 ----
 
-Yii 2.0 supprime les fonctionnalités internes de formattage de dates et nombres, en faveur du [module PHP PECL intl] (http://pecl.php.net/package/intl).
+Yii 2.0 supprime les fonctionnalités internes de formattage de dates et nombres, en faveur du [module PHP PECL intl](http://pecl.php.net/package/intl).
 
 La traduction de message est désormais effectuée via le composant d'application `i18n`.
 Ce composant gère un ensemble de sources de messages, ce qui vous permet d'utiliser différentes
@@ -328,12 +328,12 @@ Merci de lire la partie [Filtres](structure-filters.md) pour plus de détails.
 Ressources
 ----------
 
-Yii 2.0 introduit un nouveau concept de packet de ressources (*asset bundle*) qui remplace le concept de gestionnaire de ressources (*asset manager*) de la version 1.1.
+Yii 2.0 introduit un nouveau concept de paquet de ressources (*asset bundle*) qui remplace le concept de gestionnaire de ressources (*asset manager*) de la version 1.1.
 
-Un packet de ressources est une collection de fichiers (par exemple : fichier JavaScript, CSS, image, etc.)
+Un paquet de ressources est une collection de fichiers (par exemple : fichier JavaScript, CSS, image, etc.)
 dans un dossier. Chaque paquet est représenté par une classe étendant [[yii\web\AssetBundle]].
-En *enregistrant* un packet via [[yii\web\AssetBundle::register()]], vous rendez les ressources du packet accessibles via le Web. Contrairement à Yii 1.1, la page *enregistrant* le paquet
-contiendra automatiquement les références vers les fichiers déclarés dans le paquet.
+En enregistrant un paquet via [[yii\web\AssetBundle::register()]], vous rendez les ressources du paquet accessibles via le Web. Contrairement à Yii 1.1, la page enregistrant le paquet
+contiendra automatiquement les références vers les fichiers Javascript et CSS déclarés dans ce paquet.
 
 Merci de lire la partie [Assets](structure-assets.md) pour plus de détails.
 
@@ -450,7 +450,7 @@ $customers = Customer::find()->asArray()->all();
 ```
 
 Un autre changement est que vous ne pouvez plus définir les valeurs par défaut des attributs en utilisant des propriétés
-publiques. Si vous avez besoin, vous devez utiliser la méthode `init` de la classe de votre modèle.
+publiques. Si vous en avez besoin, vous devez utiliser la méthode `init` de la classe de votre modèle.
 
 ```php
 public function init()
@@ -468,15 +468,47 @@ Il y a beaucoup d'autres modifications et améliorations à Active Record.
 Merci de lire la partie [Active Record](db-active-record.md) pour en savoir plus.
 
 
+Active Record Behaviors
+-----------------------
+
+Dans la version 2.0, nous avons abandonné la classe de base `CActiveRecordBehavior`. Si vous voulez créer une classe Active Record Behavior,
+vous devrez étendre directement la classe `yii\base\Behavior`. Si la classe doit répondre à certains événements
+du propriétaire, vous devez surcharger la méthode `events()` comme ci dessous,
+
+```php
+namespace app\components;
+
+use yii\db\ActiveRecord;
+use yii\base\Behavior;
+
+class MyBehavior extends Behavior
+{
+    // ...
+
+    public function events()
+    {
+        return [
+            ActiveRecord::EVENT_BEFORE_VALIDATE => 'beforeValidate',
+        ];
+    }
+
+    public function beforeValidate($event)
+    {
+        // ...
+    }
+}
+```
+
+
 User et IdentityInterface
 -------------------------
 
-La classe `CWebUser` 1.1 est maintenant remplacé par [[yii\web\User]], et il n'y a plus de classe `CUserIdentity`.
+La classe `CWebUser` 1.1 est maintenant remplacée par [[yii\web\User]], et il n'y a plus de classe `CUserIdentity`.
 Au lieu de cela, vous devez implémenter [[yii\web\IdentityInterface]] qui est beaucoup plus simple à utiliser.
 Le modèle d'application avancé fournit un exemple.
 
 Merci de lire les parties [Authentification](security-authentication.md), [Authorisation](security-authorization.md), et
-[Modèle application avancée](tutorial-advanced-app.md) pour en savoir plus.
+[Modèle d'application avancée](tutorial-advanced-app.md) pour en savoir plus.
 
 
 Gestion des URL
